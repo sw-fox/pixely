@@ -1,14 +1,26 @@
 :root {
-  --text: #6b6375;
+  --bg-primary: #ddd;
+  --text-primary: #333333;
+  --text-secondary: #6b6375;
 
   @media (max-width: 1024px) {
     font-size: 16px;
   }
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --text: #9ca3af;
-  }
+[data-theme="dark"] {
+  --bg-primary: #333333;
+  --text-primary: #ddd;
+  --text-secondary: #9ca3af;
 }
 
+#root {
+  min-height: 100vh;
+}
+
+body {
+  margin: 0;
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}

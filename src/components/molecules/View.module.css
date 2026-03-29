@@ -1,0 +1,21 @@
+
+.view {
+    display: flex;
+    align-items: center;
+}
+
+.pixelGrid {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2em;
+}
+
+.pixelRow {
+    display: flex;
+    gap: 0.2em;
+}
+
+.pixel {
+    width: 3em;
+    height: 3em;
+}

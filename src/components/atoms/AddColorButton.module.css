@@ -1,0 +1,11 @@
+
+.container {
+    position: relative;
+    display: inline-block;
+}
+
+.color {
+    width: 3.4em;
+    height: 3.4em;
+    margin: 0 0.4em;
+}

@@ -1,0 +1,20 @@
+.footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.footerContent{
+    padding: 0.2em;
+    font-family: Tahoma,Arial;
+}
+
+.footerContent a{
+    color: var(--text-primary);
+}
+
+.footerContent a:hover{
+    color: var(--text-secondary);
+}

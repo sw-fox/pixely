@@ -1,0 +1,10 @@
+.button {
+    border: none;
+    background: none;
+    color: var(--text-primary);
+    margin: 0.4em;
+
+    :hover {
+  color: var(--text-secondary);
+    }
+}
