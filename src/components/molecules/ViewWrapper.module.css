@@ -1,0 +1,9 @@
+.wrapperVertical {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.wrapperHorizontal {
+    display: flex;
+    align-items: center;
+}

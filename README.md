@@ -2,7 +2,9 @@
 
 this a very simple image editing programm to generate pixel icons in the browser.
 
-The project is mostly used for lerning end experimenting with code generation.
+The project is mostly used for learning end experimenting with code generation.
+
+https://sw-fox.github.io/pixely/
 
 
 ## Run localy

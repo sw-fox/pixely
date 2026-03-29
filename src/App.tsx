@@ -2,7 +2,7 @@
 import style from './App.module.css'
 import ColorTab from './components/molecules/ColorTab';
 import ActionTab from './components/molecules/ActionTab';
-import View from './components/molecules/View';
+import ViewWrapper from './components/molecules/ViewWrapper';
 import { PixelProvider } from './contexts/PixelContext';
 import { ThemeProvider } from './contexts/ThemeContext';
 import ThemeToggle from './components/atoms/ThemeToggle';
@@ -16,7 +16,7 @@ function App() {
         <div className={style.app}>
           <ThemeToggle />
           <ColorTab />
-          <View />
+          <ViewWrapper />
           <ActionTab />
         </div>
         <Footer/>

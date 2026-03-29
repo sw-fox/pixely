@@ -7,7 +7,7 @@ function Footer() {
   return (
     <div className={style.footer}>
       <div className={style.footerContent}>
-        <a href="">
+        <a href="https://github.com/sw-fox/pixely">
           <FontAwesomeIcon icon={faGithub} size='2x'/>
         </a>
       </div>

@@ -32,13 +32,13 @@ export const pixelReducer = (state: PixelState, action: PixelAction): PixelState
         case 'undo':
             return undo(state);
         case 'up':
-            return { ...state };
+            return translate(state, 0, -1);
         case 'down':
-            return { ...state };
+            return translate(state, 0, 1);
         case 'left':
-            return { ...state };
+            return translate(state, -1, 0);
         case 'right':
-            return { ...state };
+            return translate(state, 1, 0);
         default:
             return state;
     }
@@ -60,17 +60,17 @@ const fill = (state: PixelState): PixelState => {
 
 const bigger = (state: PixelState): PixelState => {
     const oldRows = state.pixelGrid.length;
-    
+
     if (oldRows > 16) {
         return state;
     }
     const oldCols = state.pixelGrid[0]?.length ?? 0;
-    
+
     const newRows = oldRows + 1;
     const newCols = oldCols + 1;
-    
+
     const newPixelGrid: string[][] = [];
-    
+
     for (let i = 0; i < newRows; i++) {
         const newRow: string[] = [];
         for (let j = 0; j < newCols; j++) {
@@ -82,7 +82,7 @@ const bigger = (state: PixelState): PixelState => {
         }
         newPixelGrid.push(newRow);
     }
-    
+
     const newHistory = [...state.history, state.pixelGrid];
     return { ...state, pixelGrid: newPixelGrid, history: newHistory };
 };
@@ -90,16 +90,16 @@ const bigger = (state: PixelState): PixelState => {
 const smaller = (state: PixelState): PixelState => {
     const oldRows = state.pixelGrid.length;
     const oldCols = state.pixelGrid[0]?.length ?? 0;
-    
+
     if (oldRows <= 1 || oldCols <= 1) {
         return state;
     }
-    
+
     const newRows = oldRows - 1;
     const newCols = oldCols - 1;
-    
+
     const newPixelGrid: string[][] = [];
-    
+
     for (let i = 0; i < newRows; i++) {
         const newRow: string[] = [];
         for (let j = 0; j < newCols; j++) {
@@ -107,7 +107,7 @@ const smaller = (state: PixelState): PixelState => {
         }
         newPixelGrid.push(newRow);
     }
-    
+
     const newHistory = [...state.history, state.pixelGrid];
     return { ...state, pixelGrid: newPixelGrid, history: newHistory };
 };
@@ -116,9 +116,48 @@ const undo = (state: PixelState): PixelState => {
     if (state.history.length === 0) {
         return state;
     }
-    
+
     const previousHistory = state.history.slice(0, -1);
     const previousGrid = state.history[state.history.length - 1];
-    
+
     return { ...state, pixelGrid: previousGrid, history: previousHistory };
+};
+
+const translate = (
+    state: PixelState,
+    translateX: number, // -1 (left), +1 (right)
+    translateY: number  // -1 (up), +1 (down)
+): PixelState => {
+    const { pixelGrid } = state;
+    const rows = pixelGrid.length;
+    const cols = pixelGrid[0].length;
+
+    const newGrid: string[][] = Array.from({ length: rows }, () =>
+        Array.from({ length: cols }, () => "#fff")
+    );
+
+    for (let r = 0; r < rows; r++) {
+        for (let c = 0; c < cols; c++) {
+            const value = pixelGrid[r][c];
+            if (value === null) continue;
+
+            const newR = r + translateY;
+            const newC = c + translateX;
+
+            if (
+                newR >= 0 && newR < rows &&
+                newC >= 0 && newC < cols
+            ) {
+                newGrid[newR][newC] = value;
+            }
+        }
+    }
+
+    const newHistory = [...state.history, state.pixelGrid];
+
+    return {
+        ...state,
+        pixelGrid: newGrid,
+        history: newHistory,
+    };
 };
